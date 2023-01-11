@@ -1,10 +1,14 @@
 body {
-    background-color: #E5E5E5;
+    background-color: #eef9bf;
 }
 
-div {
+main {
     width: 100%;
     height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 
 }
 
@@ -20,4 +24,30 @@ h1 {
     margin-top: 40px;
     margin-bottom: 40px;
 
+}
+
+
+.cartas {
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.carta {
+    width: 117px;
+    height: 146px;
+    left: 122px;
+    top: 150px;
+    background: #A7E9AF;
+    border: 1px solid #99CEA8;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 17px;
+}
+
+img {
+    width: 100px;
+    height: 100px;
 }
