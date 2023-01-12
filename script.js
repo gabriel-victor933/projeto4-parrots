@@ -15,6 +15,13 @@ for (let i = 0; i != NcartasPossiveis - Ncartas; i++) {
 }
 
 
+function clicado(carta) {
+    console.log(carta)
+    carta.classList.toggle("clicado");
+
+}
+
+
 
 
 

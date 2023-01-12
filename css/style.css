@@ -38,8 +38,6 @@ h1 {
 .carta {
     width: 117px;
     height: 146px;
-
-
     margin: 17px;
     position: relative;
 }
@@ -72,10 +70,11 @@ img {
     transform: rotateY(180deg);
 }
 
-.carta:hover .back-face {
+
+.clicado .back-face {
     transform: rotateY(0deg);
 }
 
-.carta:hover .front-face {
+.clicado .front-face {
     transform: rotateY(-180deg);
 }
