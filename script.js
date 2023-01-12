@@ -87,10 +87,10 @@ async function clicado(carta) {
         compararGifs(gif_carta1, gif_carta2, carta)
 
 
-        /* if (gif_carta1 != gif_carta2) {
+        if (gif_carta1 != gif_carta2) {
             document.querySelector(`#${cartaPraCima}`).classList.remove("clicado");
             document.querySelector(`#${carta.id}`).classList.remove("clicado");
-        } */
+        }
 
         Njogadas++;
         cartaPraCima = "nao";
