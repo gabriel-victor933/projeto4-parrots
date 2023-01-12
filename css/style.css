@@ -62,7 +62,7 @@ img {
     justify-content: center;
     position: absolute;
     backface-visibility: hidden;
-    transition: all .5s;
+    transition: all .8s;
     transform-style: preserve-3d;
 }
 

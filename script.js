@@ -3,11 +3,12 @@ let Ncartas = 14;
 let NcartasPossiveis = 14;
 let cartaPraCima = "nao";
 let gifs = ["bobross", "explody", "fiesta", "metal", "revertit", "triplets", "unicorn"];
+let Njogadas = 0;
 
-/* do {
+do {
     Ncartas = prompt("Qual o numero de cartas que deseja jogar?");
 } while (Ncartas % 2 != 0 || Ncartas < 4 || Ncartas > 14);
- */
+
 
 
 //remove as cartas que não serão usadas;
@@ -27,11 +28,9 @@ function gerarJogo() {
         posicoesgifs[i] = i + 1;
     }
 
-    console.log(posicoesgifs.sort(comparador));
+
     let paresA = posicoesgifs.slice(0, Ncartas / 2);
     let paresB = posicoesgifs.slice(Ncartas / 2, Ncartas);
-    console.log(paresA);
-    console.log(paresB);
 
 
     let gifsjogaveis = gifs;
@@ -74,10 +73,11 @@ async function clicado(carta) {
             document.querySelector(`#${carta.id}`).classList.remove("clicado");
         } */
 
-
+        Njogadas++;
         cartaPraCima = "nao";
-    }
+        verificarFim();
 
+    }
 
 }
 
@@ -104,6 +104,15 @@ function delay(n) {
 
 function comparador() {
     return Math.random() - 0.5;
+}
+
+function verificarFim() {
+
+    if (document.querySelectorAll(".clicado").length == Ncartas) {
+        alert(`Você ganhou em ${Njogadas} Jogadas`);
+    } else {
+        return;
+    }
 }
 
 
