@@ -10,7 +10,9 @@ let segundos = document.getElementById("seg");
 
 
 iniciar();
+setInterval(relogio, 1000);
 
+//função que configura o numero de cartas do jogo
 function iniciar() {
 
 
@@ -36,12 +38,7 @@ function iniciar() {
 }
 
 
-
-
-
-
-
-//função que aplica um gif aleatorio a cada par de cartas
+//função que aplica um gif aleatorio a cada par de cartas aleatorias
 function gerarJogo() {
     let posicoesgifs = new Array(Ncartas)
     for (let i = 0; i < Ncartas; i++) {
@@ -66,8 +63,6 @@ function gerarJogo() {
     }
 
 }
-
-setInterval(relogio, 1000);
 
 
 //função que vira e desvira as cartas.
@@ -129,6 +124,7 @@ function comparador() {
     return Math.random() - 0.5;
 }
 
+//função que verifica se todos os pares foram encontrados
 function verificarFim() {
 
     let resp;
@@ -147,6 +143,7 @@ function verificarFim() {
     }
 }
 
+//cronometro do jogo
 function relogio() {
 
     seg++;
@@ -155,6 +152,7 @@ function relogio() {
 
 }
 
+//remove as classes adicionadas as cartas para poder recomeçar o jogo
 function reset_cards() {
 
     let cartasViradas = document.querySelectorAll(".clicado");
