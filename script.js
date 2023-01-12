@@ -2,26 +2,52 @@
 let Ncartas = 14;
 let NcartasPossiveis = 14;
 let cartaPraCima = "nao";
-
 let gifs = ["bobross", "explody", "fiesta", "metal", "revertit", "triplets", "unicorn"];
 
 /* do {
     Ncartas = prompt("Qual o numero de cartas que deseja jogar?");
 } while (Ncartas % 2 != 0 || Ncartas < 4 || Ncartas > 14);
-
  */
+
 
 //remove as cartas que não serão usadas;
 let cartas = document.querySelectorAll(".carta");
 for (let i = 0; i != NcartasPossiveis - Ncartas; i++) {
-    console.log(cartas[NcartasPossiveis - i - 1]);
     cartas[NcartasPossiveis - i - 1].classList.add("carta-fora");
 }
 
 
 
+gerarJogo();
+
+//função que aplica um gif aleatorio a cada par de cartas
+function gerarJogo() {
+    let posicoesgifs = new Array(Ncartas)
+    for (let i = 0; i < Ncartas; i++) {
+        posicoesgifs[i] = i + 1;
+    }
+
+    console.log(posicoesgifs.sort(comparador));
+    let paresA = posicoesgifs.slice(0, Ncartas / 2);
+    let paresB = posicoesgifs.slice(Ncartas / 2, Ncartas);
+    console.log(paresA);
+    console.log(paresB);
 
 
+    let gifsjogaveis = gifs;
+    gifsjogaveis.sort(comparador);
+
+
+
+    for (let i = 0; i < Ncartas / 2; i++) {
+        document.querySelector(`#C${paresA[i]} .back-face`).innerHTML = `<img src="./imagens/${gifsjogaveis[i]}parrot.gif">`;
+        document.querySelector(`#C${paresB[i]} .back-face`).innerHTML = `<img src="./imagens/${gifsjogaveis[i]}parrot.gif">`;
+
+    }
+}
+
+
+//função que vira e desvira as cartas.
 async function clicado(carta) {
 
 
@@ -55,7 +81,7 @@ async function clicado(carta) {
 
 }
 
-
+//compara as cartas viradas
 function compararGifs(gif_carta1, gif_carta2, carta) {
 
     if (gif_carta1 != gif_carta2) {
@@ -67,6 +93,7 @@ function compararGifs(gif_carta1, gif_carta2, carta) {
 
 }
 
+//aplica um delay de n segundos.
 function delay(n) {
     return new Promise(function (resolve) {
         setTimeout(resolve, n * 1000);
@@ -74,6 +101,10 @@ function delay(n) {
 }
 
 
+
+function comparador() {
+    return Math.random() - 0.5;
+}
 
 
 
