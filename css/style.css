@@ -62,7 +62,7 @@ img {
     justify-content: center;
     position: absolute;
     backface-visibility: hidden;
-    transition: all .8s;
+    transition: all .3s;
     transform-style: preserve-3d;
 }
 
@@ -77,4 +77,23 @@ img {
 
 .clicado .front-face {
     transform: rotateY(-180deg);
+}
+
+time {
+    position: fixed;
+    right: 10px;
+    top: 5px;
+
+    width: 100px;
+    height: 40px;
+    background-color: black;
+    border-radius: 20px;
+
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 27px;
+
+
 }

@@ -1,25 +1,45 @@
 //variaveis globais
-let Ncartas = 14;
+let Ncartas = 4;
 let NcartasPossiveis = 14;
 let cartaPraCima = "nao";
 let gifs = ["bobross", "explody", "fiesta", "metal", "revertit", "triplets", "unicorn"];
 let Njogadas = 0;
-
-do {
-    Ncartas = prompt("Qual o numero de cartas que deseja jogar?");
-} while (Ncartas % 2 != 0 || Ncartas < 4 || Ncartas > 14);
+let seg = 0;
+let segundos = document.getElementById("seg");
 
 
 
-//remove as cartas que não serão usadas;
-let cartas = document.querySelectorAll(".carta");
-for (let i = 0; i != NcartasPossiveis - Ncartas; i++) {
-    cartas[NcartasPossiveis - i - 1].classList.add("carta-fora");
+iniciar();
+
+function iniciar() {
+
+
+
+    do {
+        Ncartas = prompt("Qual o numero de cartas que deseja jogar?");
+    } while (Ncartas % 2 != 0 || Ncartas < 4 || Ncartas > 14);
+
+
+    //remove as cartas que não serão usadas;
+    let cartas = document.querySelectorAll(".carta");
+    for (let i = 0; i != NcartasPossiveis - Ncartas; i++) {
+        cartas[NcartasPossiveis - i - 1].classList.add("carta-fora");
+    }
+
+
+
+
+    Njogadas = 0;
+    seg = 0;
+    gerarJogo();
+
 }
 
 
 
-gerarJogo();
+
+
+
 
 //função que aplica um gif aleatorio a cada par de cartas
 function gerarJogo() {
@@ -27,10 +47,11 @@ function gerarJogo() {
     for (let i = 0; i < Ncartas; i++) {
         posicoesgifs[i] = i + 1;
     }
-
+    posicoesgifs.sort(comparador);
 
     let paresA = posicoesgifs.slice(0, Ncartas / 2);
     let paresB = posicoesgifs.slice(Ncartas / 2, Ncartas);
+
 
 
     let gifsjogaveis = gifs;
@@ -43,7 +64,10 @@ function gerarJogo() {
         document.querySelector(`#C${paresB[i]} .back-face`).innerHTML = `<img src="./imagens/${gifsjogaveis[i]}parrot.gif">`;
 
     }
+
 }
+
+setInterval(relogio, 1000);
 
 
 //função que vira e desvira as cartas.
@@ -60,7 +84,7 @@ async function clicado(carta) {
 
         carta.classList.add("clicado");
 
-        await delay(1);
+        await delay(0.5);
 
         let gif_carta1 = document.querySelector(`#${cartaPraCima} .back-face`).innerHTML;
         let gif_carta2 = document.querySelector(`#${carta.id} .back-face`).innerHTML;
@@ -75,6 +99,7 @@ async function clicado(carta) {
 
         Njogadas++;
         cartaPraCima = "nao";
+
         verificarFim();
 
     }
@@ -100,19 +125,50 @@ function delay(n) {
     });
 }
 
-
-
 function comparador() {
     return Math.random() - 0.5;
 }
 
 function verificarFim() {
 
+    let resp;
     if (document.querySelectorAll(".clicado").length == Ncartas) {
-        alert(`Você ganhou em ${Njogadas} Jogadas`);
-    } else {
-        return;
+        alert(`Você ganhou em ${Njogadas} Jogadas! A duração do jogo foi de ${segundos.innerHTML} segundos`);
+
+        do {
+            resp = prompt("Gostaria de reiniciar a partida?")
+        } while (resp != "sim" && resp != "não");
+
+        if (resp === "sim") {
+            reset_cards();
+            iniciar();
+        }
+
     }
+}
+
+function relogio() {
+
+    seg++;
+
+    segundos.innerHTML = `${Math.floor(seg / 10)}${seg % 10}`;
+
+}
+
+function reset_cards() {
+
+    let cartasViradas = document.querySelectorAll(".clicado");
+
+    for (let i = 0; i < cartasViradas.length; i++) {
+        cartasViradas[i].classList.remove("clicado");
+    }
+
+    let cartasForas = document.querySelectorAll(".carta-fora");
+
+    for (let i = 0; i < cartasForas.length; i++) {
+        cartasForas[i].classList.remove("carta-fora");
+    }
+
 }
 
 
