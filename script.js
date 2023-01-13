@@ -6,6 +6,7 @@ let gifs = ["bobross", "explody", "fiesta", "metal", "revertit", "triplets", "un
 let Njogadas = 0;
 let seg = 0;
 let segundos = document.getElementById("seg");
+let esperar = false;
 
 
 
@@ -70,16 +71,18 @@ async function clicado(carta) {
 
 
 
-    if (cartaPraCima == "nao" && !carta.classList.contains("clicado")) {
+    if (cartaPraCima == "nao" && !carta.classList.contains("clicado") && !esperar) {
         //virar carta para cima;
         carta.classList.add("clicado");
         cartaPraCima = carta.id;
 
-    } else if (cartaPraCima != "nao" && !carta.classList.contains("clicado")) {
+    } else if (cartaPraCima != "nao" && !carta.classList.contains("clicado") && !esperar) {
 
         carta.classList.add("clicado");
 
-        await delay(0.5);
+        esperar = true;
+        await delay(1);
+        esperar = false;
 
         let gif_carta1 = document.querySelector(`#${cartaPraCima} .back-face`).innerHTML;
         let gif_carta2 = document.querySelector(`#${carta.id} .back-face`).innerHTML;
